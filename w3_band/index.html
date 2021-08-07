@@ -114,7 +114,7 @@
                   <p class="place-desc">
                     Praesent tincidunt sed tellus ut rutrum sed vitae justo.
                   </p>
-                  <a href="#" class="place-btn">Buy Tickets</a>
+                  <button class="js-buy-ticket place-btn ">Buy Tickets</button>
                 </div>
               </div>
               <div class="column column-third mobile-width-100 mt-16">
@@ -129,7 +129,7 @@
                   <p class="place-desc">
                     Praesent tincidunt sed tellus ut rutrum sed vitae justo.
                   </p>
-                  <a href="#" class="place-btn">Buy Tickets</a>
+                  <button class="js-buy-ticket place-btn">Buy Tickets</button>
                 </div>
               </div>
               <div class="column column-third mobile-width-100 mt-16">
@@ -144,7 +144,7 @@
                   <p class="place-desc">
                     Praesent tincidunt sed tellus ut rutrum sed vitae justo.
                   </p>
-                  <a href="#" class="place-btn">Buy Tickets</a>
+                  <button class="js-buy-ticket place-btn ">Buy Tickets</button>
                 </div>
               </div>
             </div>
@@ -215,7 +215,34 @@
       </div>
       <p class="copyright"> Powered by <a href="#">w3.css</a></p>
     </div>
-
+    <div class=" js-modal modal">
+      <div class="modal-container js-modal-container">
+          <div class="modal-close js-modal-close">
+              <i class="ti-close"></i>
+          </div>
+          <div class="modal-header">
+              <i class="ti-bag modal-heading-icon"></i> Tickets
+          </div>
+          <div class="modal-body">
+              <label for="ticket-quantity" class="modal-lable">
+                  <i class="ti-shopping-cart"></i>
+                  Tickets, $15 per person
+              </label>
+              <input id="ticket-quantity" type="text" class="modal-input" placeholder="How many?">
+              <label for="ticket-email" class="modal-lable">
+                  <i class="ti-user"></i>
+                  Sent to
+              </label>
+              <input id="ticket-email" type="email" class="modal-input" placeholder="Enter email...">
+              <button id="buy-ticket">
+                  Pay <i class="ti-check"></i>
+              </button>
+          </div>
+          <footer class="modal-footer">
+              <p class="modal-help">Need <a href="">help?</a></p>
+          </footer>
+      </div>
+    </div>
     <script>
       var header = document.getElementById('header')
       var menuButton = document.getElementById('menu-btn')
@@ -237,6 +264,28 @@
             }
         }
 
+    </script>
+    <script>
+      const buyBtns = document.querySelectorAll('.js-buy-ticket')
+        const modal = document.querySelector('.js-modal')
+        const modalClose = document.querySelector('.js-modal-close')
+        const modalContainer = document.querySelector('.js-modal-container')
+
+        function showBuyTickets() {
+            modal.classList.add('open')
+        }
+
+        function hideBuyTickets() {
+            modal.classList.remove('open')
+        }
+        for (const buyBtn of buyBtns) {
+            buyBtn.addEventListener('click', showBuyTickets)
+        }
+        modalClose.addEventListener('click', hideBuyTickets)
+        modal.addEventListener('click', hideBuyTickets)
+        modalContainer.addEventListener('click', function(even) {
+            even.stopPropagation()
+        })
     </script>
   </body>
 </html>
